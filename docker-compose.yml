@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  postgres-db:
+    image: postgres
+    ports:
+      - "${DB_BACKEND_EXTERNAL_PORT}:5432"
+    environment:
+      - POSTGRES_USER=${DB_BACKEND_USERNAME}
+      - POSTGRES_PASSWORD=${DB_BACKEND_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - ~/Volumes/vlad-db:/var/lib/postgresql/data
