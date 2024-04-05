@@ -1,12 +1,5 @@
-from database import Chat, get_session
+import uvicorn
 
 
-session = get_session()
-
-new_user = Chat(name="Чат 2")
-session.add(new_user)
-session.commit()
-
-all_chats = session.query(Chat).where(Chat.id == 1)
-for chat in all_chats:
-    print(chat.id, chat.name)
+if __name__ == "__main__":
+    uvicorn.run("server.server:app", host="localhost", port=5000, reload=True)
