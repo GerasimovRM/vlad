@@ -9,5 +9,6 @@ class Chat(BaseSQLAlchemyModel):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String, nullable=False)
+
     messages = relationship("Message", back_populates="chat")
     chat_users = relationship("UserChat", back_populates="chat")

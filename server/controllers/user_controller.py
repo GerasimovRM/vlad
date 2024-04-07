@@ -1,6 +1,6 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 
-from database import get_session, User
+from database import get_session, User, UserChat
 from models.user.user_get_dto import UserGetDto
 from models.user.user_post_dto import UserPostDto
 from models.user.user_put_dto import UserPutDto
@@ -54,3 +54,39 @@ def delete_user(id: int):
     session.delete(user)
     session.commit()
     session.close()
+
+
+@user_router.post("/add-to-chat")
+def add_user_to_chat(user_id: int,
+                     chat_id: int):
+    session = get_session()
+    user_chat = UserChat(user_id=user_id,
+                         chat_id=chat_id)
+    session.add(user_chat)
+    session.commit()
+    session.close()
+    return {"status": "ok"}
+
+
+@user_router.delete("/remove-from-chat")
+def remove_user_to_chat(user_id: int,
+                        chat_id: int):
+    session = get_session()
+    user_chat = session.query(UserChat).where(UserChat.user_id == user_id,
+                                              UserChat.chat_id == chat_id).first()
+    session.delete(user_chat)
+    session.commit()
+    session.close()
+    return {"status": "ok"}
+
+
+@user_router.post("/sign-in", response_model=UserGetDto)
+def sign_in(login: str,
+            password: str):
+    session = get_session()
+    user = session.query(User).where(User.login == login,
+                                     User.password == password).first()
+    if user:
+        return UserGetDto(**user.to_dict())
+    else:
+        raise HTTPException(status_code=403, detail="Неверный логин или пароль")
