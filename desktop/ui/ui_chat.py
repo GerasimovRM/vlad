@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '.\qt_forms\chat.ui'
+# Form implementation generated from reading ui file 'qt_forms/chat.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -11,18 +11,16 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(800, 600)
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
-        self.centralwidget.setObjectName("centralwidget")
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.centralwidget)
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        self.groupBox = QtWidgets.QGroupBox(self.centralwidget)
+class Ui_Form(object):
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        Form.resize(730, 476)
+        self.verticalLayout_3 = QtWidgets.QVBoxLayout(Form)
+        self.verticalLayout_3.setObjectName("verticalLayout_3")
+        self.groupBox = QtWidgets.QGroupBox(Form)
         self.groupBox.setObjectName("groupBox")
-        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.groupBox)
-        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.groupBox)
+        self.verticalLayout.setObjectName("verticalLayout")
         self.tableWidget = QtWidgets.QTableWidget(self.groupBox)
         self.tableWidget.setObjectName("tableWidget")
         self.tableWidget.setColumnCount(3)
@@ -34,40 +32,36 @@ class Ui_MainWindow(object):
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(2, item)
         self.tableWidget.horizontalHeader().setStretchLastSection(True)
-        self.verticalLayout_2.addWidget(self.tableWidget)
-        self.horizontalLayout.addWidget(self.groupBox)
-        self.groupBox_2 = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBox_2.setObjectName("groupBox_2")
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.groupBox_2)
-        self.verticalLayout.setObjectName("verticalLayout")
-        self.textEdit = QtWidgets.QTextEdit(self.groupBox_2)
+        self.verticalLayout.addWidget(self.tableWidget)
+        self.pushButton_update = QtWidgets.QPushButton(self.groupBox)
+        self.pushButton_update.setObjectName("pushButton_update")
+        self.verticalLayout.addWidget(self.pushButton_update)
+        self.textEdit = QtWidgets.QTextEdit(self.groupBox)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.textEdit.sizePolicy().hasHeightForWidth())
+        self.textEdit.setSizePolicy(sizePolicy)
+        self.textEdit.setMaximumSize(QtCore.QSize(10000, 80))
         self.textEdit.setObjectName("textEdit")
         self.verticalLayout.addWidget(self.textEdit)
-        self.pushButton = QtWidgets.QPushButton(self.groupBox_2)
+        self.pushButton = QtWidgets.QPushButton(self.groupBox)
         self.pushButton.setObjectName("pushButton")
         self.verticalLayout.addWidget(self.pushButton)
-        self.horizontalLayout.addWidget(self.groupBox_2)
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 26))
-        self.menubar.setObjectName("menubar")
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
-        self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
+        self.verticalLayout_3.addWidget(self.groupBox)
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.retranslateUi(Form)
+        QtCore.QMetaObject.connectSlotsByName(Form)
 
-    def retranslateUi(self, MainWindow):
+    def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.groupBox.setTitle(_translate("MainWindow", "Чат"))
+        Form.setWindowTitle(_translate("Form", "Form"))
+        self.groupBox.setTitle(_translate("Form", "Чат"))
         item = self.tableWidget.horizontalHeaderItem(0)
-        item.setText(_translate("MainWindow", "User"))
+        item.setText(_translate("Form", "User"))
         item = self.tableWidget.horizontalHeaderItem(1)
-        item.setText(_translate("MainWindow", "Time"))
+        item.setText(_translate("Form", "Time"))
         item = self.tableWidget.horizontalHeaderItem(2)
-        item.setText(_translate("MainWindow", "Text message"))
-        self.groupBox_2.setTitle(_translate("MainWindow", "Введите сообщение"))
-        self.pushButton.setText(_translate("MainWindow", "Отправить"))
+        item.setText(_translate("Form", "Text message"))
+        self.pushButton_update.setText(_translate("Form", "Обновить"))
+        self.pushButton.setText(_translate("Form", "Отправить"))

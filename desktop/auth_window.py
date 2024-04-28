@@ -2,6 +2,7 @@ import requests
 from PyQt5.QtWidgets import QDialog, QLineEdit
 
 from desktop.ui.ui_auth import Ui_Dialog
+from models.user.user_get_dto import UserGetDto
 
 
 class AuthWindow(QDialog, Ui_Dialog):
@@ -19,7 +20,6 @@ class AuthWindow(QDialog, Ui_Dialog):
                                  params={"login": login,
                                          "password": password})
         if response.status_code == 200:
-            self.auth_data.append(response.json())
+            user_dto = UserGetDto(**response.json())
+            self.auth_data.append(user_dto)
             self.close()
-        else:
-            print(response.json())

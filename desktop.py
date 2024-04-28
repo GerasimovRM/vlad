@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtWidgets import QApplication
 
-from desktop.chat_window import ChatWindow
+from desktop.main_window import MainWindow
 
 sys._excepthook = sys.excepthook
 
@@ -15,6 +15,6 @@ sys.excepthook = exception_hook
 
 
 app = QApplication(sys.argv)
-ex = ChatWindow()
+ex = MainWindow()
 ex.show()
 sys.exit(app.exec_())

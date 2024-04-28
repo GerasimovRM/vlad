@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from database import get_session, Chat
+from database import get_session, Chat, UserChat
 from models.chat.chat_get_dto import ChatGetDto
 from models.chat.chat_post_dto import ChatPostDto
 from models.chat.chat_put_dto import ChatPutDto
@@ -54,3 +54,14 @@ def delete_chat(id: int):
     session.delete(chat)
     session.commit()
     session.close()
+
+
+@chat_router.get("/user-chats", response_model=list[ChatGetDto])
+def get_user_chats(user_id: int):
+    session = get_session()
+    user_chats = session.query(UserChat).where(UserChat.user_id == user_id).all()
+
+    chats = list(map(lambda user_chat: user_chat.chat, user_chats))
+    chats_dto = list(map(lambda chat_entity: ChatGetDto(**chat_entity.to_dict()), chats))
+    session.close()
+    return chats_dto
